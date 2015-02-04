@@ -7,7 +7,7 @@ using Domain.Messages.Comandos;
 
 namespace Domain {
     public class Funcionario {
-        private IEnumerable<Contacto> _contactos;
+        private List<Contacto> _contactos;
         private int _id;
         private string _nif;
         private string _nome;
@@ -24,7 +24,7 @@ namespace Domain {
             _nome = comando.Nome;
             _nif = comando.Nif;
             _tipoFuncionario = comando.TipoFuncionario;
-            _contactos = comando.Contactos ?? Enumerable.Empty<Contacto>();
+            _contactos = new List<Contacto>( comando.Contactos ?? Enumerable.Empty<Contacto>() );
         }
 
         //TODO: bad, more crud than cqrs...
@@ -70,6 +70,19 @@ namespace Domain {
             _nome = comando.Nome;
             _nif = comando.Nif;
             _tipoFuncionario = comando.TipoFuncionario;
+        }
+
+        public void Modifica(ModificaContactosFuncionario comando) {
+            Contract.Requires(comando != null);
+            foreach (var contacto in comando.ContactosRemover) {
+                _contactos.Remove(contacto);
+            }
+            foreach (var contacto in comando.ContactosAdicionar) {
+                if (_contactos.Contains(contacto)) {
+                    break;
+                }
+                _contactos.Add(contacto);
+            }
         }
     }
 }

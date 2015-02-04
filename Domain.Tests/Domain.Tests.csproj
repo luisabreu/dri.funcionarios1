@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="FuncionalidadesCriacaoFuncionario.cs" />
     <Compile Include="FuncionalidadesModificacaoDadosGeraisFuncionario.cs" />
+    <Compile Include="FuncionalidadesModificaContactosFuncionario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
