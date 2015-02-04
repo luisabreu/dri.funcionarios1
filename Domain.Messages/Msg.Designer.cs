@@ -95,5 +95,14 @@ namespace Domain.Messages {
                 return ResourceManager.GetString("String_nao_pode_ser_nula", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O tipo de funcionário é necessário para executar esta operação..
+        /// </summary>
+        internal static string Tipo_funcionario_tem_de_ser_definido {
+            get {
+                return ResourceManager.GetString("Tipo_funcionario_tem_de_ser_definido", resourceCulture);
+            }
+        }
     }
 }

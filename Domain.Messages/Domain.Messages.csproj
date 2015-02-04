@@ -85,6 +85,8 @@
   <ItemGroup>
     <Compile Include="Comandos\CriaFuncionario.cs" />
     <Compile Include="Comandos\IComando.cs" />
+    <Compile Include="Comandos\ModificaDadosGeraisFuncionario.cs" />
+    <Compile Include="Comandos\VerificadorNif.cs" />
     <Compile Include="Contacto.cs" />
     <Compile Include="Msg.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -129,4 +129,7 @@
   <data name="String_nao_pode_ser_nula" xml:space="preserve">
     <value>O valor da string passada nao pode ser nulo.</value>
   </data>
+  <data name="Tipo_funcionario_tem_de_ser_definido" xml:space="preserve">
+    <value>O tipo de funcionário é necessário para executar esta operação.</value>
+  </data>
 </root>

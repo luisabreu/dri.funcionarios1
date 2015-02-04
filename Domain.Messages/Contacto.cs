@@ -37,6 +37,18 @@ namespace Domain.Messages {
                 return ((int) _tipoContacto*397) ^ (_valor != null ? _valor.GetHashCode() : 0);
             }
         }
+
+        public static Telefone CriaTelefone(string numero) {
+            return new Telefone(numero);
+        }
+        
+        public static Email CriaEmail(string mail) {
+            return new Email(mail);
+        }
+        
+        public static Extensao CriaExtensao(string ext) {
+            return new Extensao(ext);
+        }
     }
 
     public class Telefone : Contacto {
@@ -77,7 +89,7 @@ namespace Domain.Messages {
     public class Extensao : Contacto {
         private static readonly Regex _validator = new Regex(@"^\d{4}$");
 
-        public Extensao(TipoContacto tipoContacto, string valor) : base(TipoContacto.Email, valor) {
+        public Extensao(string valor) : base(TipoContacto.Email, valor) {
             Contract.Requires(valor != null, Msg.Contacto_incorreto);
             if (!IsValid(valor)) {
                 throw new InvalidOperationException(Msg.Contacto_incorreto);
