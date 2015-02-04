@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -24,7 +25,8 @@ namespace Domain {
             _nome = comando.Nome;
             _nif = comando.Nif;
             _tipoFuncionario = comando.TipoFuncionario;
-            _contactos = new List<Contacto>( comando.Contactos ?? Enumerable.Empty<Contacto>() );
+            _contactos = new List<Contacto>(comando.Contactos ?? Enumerable.Empty<Contacto>());
+            _version = comando.Versao;
         }
 
         //TODO: bad, more crud than cqrs...
@@ -67,6 +69,9 @@ namespace Domain {
 
         public void Modifica(ModificaDadosGeraisFuncionario comando) {
             Contract.Requires(comando != null);
+            if (comando.Version != _version) {
+                throw new InvalidOperationException(Msg.Objeto_modificado_por_outro_utilizador);
+            }
             _nome = comando.Nome;
             _nif = comando.Nif;
             _tipoFuncionario = comando.TipoFuncionario;
@@ -74,6 +79,9 @@ namespace Domain {
 
         public void Modifica(ModificaContactosFuncionario comando) {
             Contract.Requires(comando != null);
+            if (comando.Versao != _version) {
+                throw new InvalidOperationException(Msg.Objeto_modificado_por_outro_utilizador);
+            }
             foreach (var contacto in comando.ContactosRemover) {
                 _contactos.Remove(contacto);
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Messages.Comandos;
+using FluentAssertions;
 using Xbehave;
 using Xunit;
 
@@ -84,6 +85,19 @@ namespace Domain.Messages.Tests.Comandos {
 
             "Então não obtemos exceção"
                 .Then(() => Assert.Null(excecaoEsperada));
+        }
+
+        [Scenario]
+        public void Cria_comando_com_versao_positiva(Action criaComando, CriaFuncionario comando) {
+            const int versao = 1;
+            "Uma operação de criação de comando com uma versão positiva"
+                .Given(() => criaComando = () => comando = new CriaFuncionario("luis", "123456789", CriaFuncionarioParaTestes(), null, 1));
+
+            "Quando tentamos executar"
+                .When(() =>criaComando() );
+
+            "Então obtemos o campo version inicializado"
+                .Then(() => comando.Versao.Should().Be(versao));
         }
         
     }
