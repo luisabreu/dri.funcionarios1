@@ -89,6 +89,7 @@
     <Compile Include="Comandos\ModificaDadosGeraisFuncionario.cs" />
     <Compile Include="Comandos\VerificadorNif.cs" />
     <Compile Include="Contacto.cs" />
+    <Compile Include="Handlers\MsgGravacao.cs" />
     <Compile Include="Msg.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
