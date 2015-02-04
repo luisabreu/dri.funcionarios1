@@ -15,6 +15,13 @@ namespace Domain {
         private TipoFuncionario _tipoFuncionario;
         private int _version;
 
+        private Funcionario() {
+            //partial loading NH
+            _nome = "NH";
+            _nif = "123456789";
+            _tipoFuncionario = new TipoFuncionario(1, "Something");
+        }
+
         protected Funcionario(CriaFuncionario comando) {
             Contract.Requires(comando != null);
             Contract.Ensures(!string.IsNullOrEmpty(_nome));
