@@ -120,4 +120,13 @@
   <data name="Contacto_incorreto" xml:space="preserve">
     <value>O valor do contacto não está correto.</value>
   </data>
+  <data name="Nif_invalido" xml:space="preserve">
+    <value>O NIF introduzido não é válido.</value>
+  </data>
+  <data name="Numero_superior_0" xml:space="preserve">
+    <value>O valor passado tem de ser um número positivo.</value>
+  </data>
+  <data name="String_nao_pode_ser_nula" xml:space="preserve">
+    <value>O valor da string passada nao pode ser nulo.</value>
+  </data>
 </root>

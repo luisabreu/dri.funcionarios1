@@ -83,6 +83,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comandos\CriaFuncionario.cs" />
+    <Compile Include="Comandos\IComando.cs" />
     <Compile Include="Contacto.cs" />
     <Compile Include="Msg.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -91,13 +93,16 @@
     </Compile>
     <Compile Include="TipoContacto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoFuncionario.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Msg.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Msg.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

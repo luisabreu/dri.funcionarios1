@@ -54,7 +54,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comandos\FuncionalidadesCriaFuncionario.cs" />
     <Compile Include="FuncionalidadesComparacaoContacto.cs" />
+    <Compile Include="FuncionalidadesCriacaoEmail.cs" />
     <Compile Include="FuncionalidadesCriacaoTelefone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

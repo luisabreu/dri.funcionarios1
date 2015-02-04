@@ -68,5 +68,32 @@ namespace Domain.Messages {
                 return ResourceManager.GetString("Contacto_incorreto", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O NIF introduzido não é válido..
+        /// </summary>
+        internal static string Nif_invalido {
+            get {
+                return ResourceManager.GetString("Nif_invalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O valor passado tem de ser um número positivo..
+        /// </summary>
+        internal static string Numero_superior_0 {
+            get {
+                return ResourceManager.GetString("Numero_superior_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O valor da string passada nao pode ser nulo..
+        /// </summary>
+        internal static string String_nao_pode_ser_nula {
+            get {
+                return ResourceManager.GetString("String_nao_pode_ser_nula", resourceCulture);
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace Domain.Messages {
@@ -8,6 +9,7 @@ namespace Domain.Messages {
         private string _valor;
 
         protected Contacto(TipoContacto tipoContacto = TipoContacto.Telefone, string valor = "123123123") {
+            Contract.Requires(valor != null, Msg.Contacto_incorreto);
             _tipoContacto = tipoContacto;
             _valor = valor;
         }
@@ -27,7 +29,7 @@ namespace Domain.Messages {
         public override bool Equals(object obj) {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == this.GetType() && Equals((Contacto) obj);
+            return obj.GetType() == GetType() && Equals((Contacto) obj);
         }
 
         public override int GetHashCode() {
@@ -39,6 +41,7 @@ namespace Domain.Messages {
 
     public class Telefone : Contacto {
         private static readonly Regex _validator = new Regex(@"^\d{9}$");
+
         public Telefone(string valor) : base(TipoContacto.Telefone, valor) {
             Contract.Requires(valor != null, Msg.Contacto_incorreto);
             if (!IsValid(valor)) {
@@ -50,15 +53,39 @@ namespace Domain.Messages {
             return _validator.IsMatch(valor);
         }
     }
-    
-    public class Email: Contacto {
+
+    public class Email : Contacto {
+
         public Email(string valor) : base(TipoContacto.Email, valor) {
+            Contract.Requires(valor != null, Msg.Contacto_incorreto);
+            if (!IsValid(valor)) {
+                throw new InvalidOperationException(Msg.Contacto_incorreto);
+            }
+        }
+
+        private bool IsValid(string valor) {
+            try {
+                new MailAddress(valor);
+                return true;
+            }
+            catch {
+                return false;
+            }
         }
     }
 
     public class Extensao : Contacto {
-        public Extensao(TipoContacto tipoContacto , string valor ) : base(TipoContacto.Email, valor) {
+        private static readonly Regex _validator = new Regex(@"^\d{4}$");
+
+        public Extensao(TipoContacto tipoContacto, string valor) : base(TipoContacto.Email, valor) {
+            Contract.Requires(valor != null, Msg.Contacto_incorreto);
+            if (!IsValid(valor)) {
+                throw new InvalidOperationException(Msg.Contacto_incorreto);
+            }
+        }
+
+        private bool IsValid(string valor) {
+            return _validator.IsMatch(valor);
         }
     }
-
 }
