@@ -42,6 +42,12 @@
     <Compile Include="Funcionario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.Messages\Domain.Messages.csproj">
+      <Project>{7BE6C00E-4DE9-46D1-A4BA-F482C7AB6874}</Project>
+      <Name>Domain.Messages</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

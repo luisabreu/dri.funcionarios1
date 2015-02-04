@@ -10,15 +10,18 @@ namespace Domain.Messages.Comandos {
         private readonly IEnumerable<Contacto> _contactos;
         private readonly string _nif;
         private readonly string _nome;
+        private readonly TipoFuncionario _tipoFuncionario;
 
-        public CriaFuncionario(string nome, string nif, IEnumerable<Contacto> contactos = null) {
+        public CriaFuncionario(string nome, string nif, TipoFuncionario tipoFuncionario, IEnumerable<Contacto> contactos = null) {
             Contract.Requires(!string.IsNullOrEmpty(nome), Msg.String_nao_pode_ser_nula);
             Contract.Requires(!string.IsNullOrEmpty(nif), Msg.String_nao_pode_ser_nula);
+            Contract.Requires(tipoFuncionario != null);
             if (!VerificadorNif.NifValido(nif)) {
                 throw new InvalidOperationException(Msg.Nif_invalido);
             }
             _nome = nome;
             _nif = nif;
+            _tipoFuncionario = tipoFuncionario;
             _contactos = contactos;
         }
 
@@ -28,6 +31,10 @@ namespace Domain.Messages.Comandos {
 
         public string Nif {
             get { return _nif; }
+        }
+
+        public TipoFuncionario TipoFuncionario {
+            get { return _tipoFuncionario; }
         }
 
         public IEnumerable<Contacto> Contactos {    
