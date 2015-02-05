@@ -7,7 +7,7 @@ namespace Domain.Messages.Tests {
         [Scenario]
         public void Gera_erro_se_numero_telefone_tiver_letras(Action criacao, Exception excecaoEsperada) {
             "Dada uma operação de criação de um telefone"
-                .Given(() => criacao = () => new Telefone("123ddd123"));
+                .Given(() => criacao = () => Contacto.CriaTelefone("123ddd123"));
 
             "Quando a executarmos"
                 .When(() => {
@@ -26,7 +26,7 @@ namespace Domain.Messages.Tests {
         [Scenario]
         public void Gera_erro_se_numero_telefone_nao_tiver_numero_esperado_digitos(Action criacao, Exception excecaoEsperada) {
             "Dada uma operação de criação de um telefone"
-                .Given(() => criacao = () => new Telefone("1231234"));
+                .Given(() => criacao = () => Contacto.CriaTelefone("1231234"));
 
             "Quando a executarmos"
                 .When(() => {
@@ -45,7 +45,7 @@ namespace Domain.Messages.Tests {
         [Scenario]
         public void Cria_telefone_se_numero_tiver_9_digitos(Action criacao, Exception excecaoEsperada) {
             "Dada uma operação de criação de um telefone"
-                .Given(() => criacao = () => new Telefone("123123123"));
+                .Given(() => criacao = () => Contacto.CriaTelefone("123123123"));
 
             "Quando a executarmos"
                 .When(() => {

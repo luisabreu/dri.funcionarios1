@@ -88,6 +88,7 @@
     <Compile Include="FuncionalidadesModificacaoDadosGeraisFuncionario.cs" />
     <Compile Include="FuncionalidadesModificaContactosFuncionario.cs" />
     <Compile Include="Mapeamentos\GestorTransacoesTestes.cs" />
+    <Compile Include="Mapeamentos\MapeamentoFuncionario.cs" />
     <Compile Include="Mapeamentos\MapeamentoTipoFuncionario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

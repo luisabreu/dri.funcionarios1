@@ -8,12 +8,12 @@ using Domain.Messages.Comandos;
 
 namespace Domain {
     public class Funcionario {
-        private List<Contacto> _contactos;
+        private IList<Contacto> _contactos;
         private int _id;
         private string _nif;
         private string _nome;
         private TipoFuncionario _tipoFuncionario;
-        private int _version;
+        private int _versao;
 
         private Funcionario() {
             //partial loading NH
@@ -33,7 +33,7 @@ namespace Domain {
             _nif = comando.Nif;
             _tipoFuncionario = comando.TipoFuncionario;
             _contactos = new List<Contacto>(comando.Contactos ?? Enumerable.Empty<Contacto>());
-            _version = comando.Versao;
+            _versao = comando.Versao;
         }
 
         //TODO: bad, more crud than cqrs...
@@ -57,8 +57,8 @@ namespace Domain {
             get { return _contactos; }
         }
 
-        public int Version {
-            get { return _version; }
+        public int Versao {
+            get { return _versao; }
         }
 
         public static Funcionario CriaNovo(CriaFuncionario cmd) {
@@ -76,7 +76,7 @@ namespace Domain {
 
         public void Modifica(ModificaDadosGeraisFuncionario comando) {
             Contract.Requires(comando != null);
-            if (comando.Version != _version) {
+            if (comando.Version != _versao) {
                 throw new InvalidOperationException(Msg.Objeto_modificado_por_outro_utilizador);
             }
             _nome = comando.Nome;
@@ -86,7 +86,7 @@ namespace Domain {
 
         public void Modifica(ModificaContactosFuncionario comando) {
             Contract.Requires(comando != null);
-            if (comando.Versao != _version) {
+            if (comando.Versao != _versao) {
                 throw new InvalidOperationException(Msg.Objeto_modificado_por_outro_utilizador);
             }
             foreach (var contacto in comando.ContactosRemover) {

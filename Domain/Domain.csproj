@@ -51,6 +51,7 @@
     <Compile Include="Funcionario.cs" />
     <Compile Include="Handlers\ITrata.cs" />
     <Compile Include="Mapeamentos\GestorTransacoes.cs" />
+    <Compile Include="Mapeamentos\MapeamentoFuncionario.cs" />
     <Compile Include="Mapeamentos\MapeamentoTipoFuncionario.cs" />
     <Compile Include="Msg.Designer.cs">
       <AutoGen>True</AutoGen>

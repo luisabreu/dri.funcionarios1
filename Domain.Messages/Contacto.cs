@@ -4,14 +4,26 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace Domain.Messages {
-    public abstract class Contacto {
+    public sealed class Contacto {
+        private static readonly Regex _verificadorNumTel = new Regex(@"^\d{9}$");
         private TipoContacto _tipoContacto;
         private string _valor;
+        //NH
+        private Contacto() : this(TipoContacto.Telefone, "123123123") {
+        }
 
-        protected Contacto(TipoContacto tipoContacto = TipoContacto.Telefone, string valor = "123123123") {
+        private Contacto(TipoContacto tipoContacto = TipoContacto.Telefone, string valor = "123123123") {
             Contract.Requires(valor != null, Msg.Contacto_incorreto);
             _tipoContacto = tipoContacto;
             _valor = valor;
+        }
+
+        public TipoContacto TipoContacto {
+            get { return _tipoContacto; }
+        }
+
+        public string Valor {
+            get { return _valor; }
         }
 
         protected bool Equals(Contacto other) {
@@ -38,19 +50,44 @@ namespace Domain.Messages {
             }
         }
 
-        public static Telefone CriaTelefone(string numero) {
-            return new Telefone(numero);
+        public static Contacto CriaTelefone(string numero) {
+            Contract.Requires(numero != null, Msg.Contacto_incorreto);
+            if (!_verificadorNumTel.IsMatch(numero)) {
+                throw new InvalidOperationException(Msg.Contacto_incorreto);
+            }
+            return new Contacto(TipoContacto.Telefone, numero);
         }
-        
-        public static Email CriaEmail(string mail) {
-            return new Email(mail);
+
+        private static bool EmailValido(string valor) {
+            try {
+                new MailAddress(valor);
+                return true;
+            }
+            catch {
+                return false;
+            }
         }
-        
-        public static Extensao CriaExtensao(string ext) {
-            return new Extensao(ext);
+
+        public static Contacto CriaEmail(string mail) {
+            Contract.Requires(mail != null, Msg.Contacto_incorreto);
+            if (!EmailValido(mail)) {
+                throw new InvalidOperationException(Msg.Contacto_incorreto);
+            }
+            return new Contacto(TipoContacto.Email, mail);
+        }
+
+        private static readonly Regex _verificadorNumExtensao = new Regex(@"^\d{4}$");
+        public static Contacto CriaExtensao(string ext) {
+            Contract.Requires(ext != null, Msg.Contacto_incorreto);
+            if (!_verificadorNumExtensao.IsMatch(ext))
+            {
+                throw new InvalidOperationException(Msg.Contacto_incorreto);
+            }
+            return new Contacto(Messages.TipoContacto.Extensao, ext);
         }
     }
 
+    /*
     public class Telefone : Contacto {
         private static readonly Regex _validator = new Regex(@"^\d{9}$");
 
@@ -65,9 +102,9 @@ namespace Domain.Messages {
             return _validator.IsMatch(valor);
         }
     }
+    
 
     public class Email : Contacto {
-
         public Email(string valor) : base(TipoContacto.Email, valor) {
             Contract.Requires(valor != null, Msg.Contacto_incorreto);
             if (!IsValid(valor)) {
@@ -99,5 +136,5 @@ namespace Domain.Messages {
         private bool IsValid(string valor) {
             return _validator.IsMatch(valor);
         }
-    }
+    }*/
 }

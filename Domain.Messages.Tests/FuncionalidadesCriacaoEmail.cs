@@ -7,7 +7,7 @@ namespace Domain.Messages.Tests {
         [Scenario]
         public void Gera_erro_se_email_estiver_errado(Action criacao, Exception excecaoEsperada) {
             "Dada uma operação de criação de um email"
-                .Given(() => criacao = () => new Email("123ddd123"));
+                .Given(() => criacao = () => Contacto.CriaEmail("123ddd123"));
 
             "Quando a executarmos"
                 .When(() => {
@@ -26,7 +26,7 @@ namespace Domain.Messages.Tests {
         [Scenario]
         public void Cria_telefone_se_Email_estiver_certo(Action criacao, Exception excecaoEsperada) {
             "Dada uma operação de criação de um email"
-                .Given(() => criacao = () => new Email("luisabure@gov-madeira.pt"));
+                .Given(() => criacao = () => Contacto.CriaEmail("luisabure@gov-madeira.pt"));
 
             "Quando a executarmos"
                 .When(() => {

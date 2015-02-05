@@ -8,7 +8,7 @@ namespace Domain.Mapeamentos {
             Not.LazyLoad();
             ReadOnly();
             Id(funcionario => funcionario.Id)
-                .Access.BackingField().Access.CamelCaseField(Prefix.Underscore)
+                .Access.CamelCaseField(Prefix.Underscore)
                 .Default(0)
                 .GeneratedBy.Assigned();
             Map(tf => tf.Descricao)
