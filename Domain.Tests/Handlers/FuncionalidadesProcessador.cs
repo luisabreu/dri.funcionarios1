@@ -115,5 +115,34 @@ namespace Domain.Tests.Handlers {
             "E os mocks foram usados"
                 .And(() => _container.GetMock<ISession>().VerifyAll());
         }
+        
+        public void Trata_comando_alteracao_dados_com_sucesso(ModificaDadosGeraisFuncionario comando, Funcionario funcionario, Processador processador, MsgGravacao msg) {
+            "Dado um comando de ateração de contactos"
+                .Given(() => comando = new ModificaDadosGeraisFuncionario(0, 0, "M", "123456789", new TipoFuncionario(1, "Docente")));
+
+            "um funcionário"
+                .And(() => funcionario = Funcionario.CriaNovo(new CriaFuncionario("Luis", "123456789", new TipoFuncionario(1, "Docente"))));
+
+            "e um processador"
+                .And(() => processador = _container.Create<Processador>());
+
+            "E alguns mocks"
+                .And(() => {
+                         var session = _container.GetMock<ISession>();
+                         session.Setup(s => s.Load<Funcionario>(comando.Id))
+                             .Returns(funcionario);
+                         session.Setup(s => s.Update(funcionario));
+                         session.Setup(s => s.Flush());
+                     });
+
+            "Quando tratamos o comando"
+                .When(() => processador.Trata(comando));
+
+            "Então obtemos uma mensagem com informação"
+                .Then(() => msg.Id.Should().Be(comando.Id));
+
+            "E os mocks foram usados"
+                .And(() => _container.GetMock<ISession>().VerifyAll());
+        }
     }
 }
