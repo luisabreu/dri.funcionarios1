@@ -60,6 +60,8 @@
       <DependentUpon>Msg.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Relatorios\GestorRelatoriosFuncionario.cs" />
+    <Compile Include="Relatorios\IGestorRelatoriosFuncionarios.cs" />
     <Compile Include="Servicos\IServicoVerificacaoDuplicacaoNif.cs" />
     <Compile Include="Servicos\ServicoVerificacaoDuplicacaoNif.cs" />
   </ItemGroup>
