@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Security.Policy;
 using Domain.Messages.Relatorios;
+using FuncionarioDto = Domain.Messages.Relatorios.Funcionario;
 
 namespace Domain.Relatorios {
     [ContractClass(typeof(ContratoGestorRelatoriosFuncionarios))]
     public interface IGestorRelatoriosFuncionarios {
         IEnumerable<ResumoFuncionario> Pesquisa(string nomeOuNif);
+        FuncionarioDto Obtem(int idFuncionario);
     }
 
     [ContractClassFor(typeof(IGestorRelatoriosFuncionarios))]
@@ -15,6 +16,11 @@ namespace Domain.Relatorios {
             Contract.Requires(!string.IsNullOrEmpty(nomeOuNif));
             Contract.Ensures(Contract.Result<IEnumerable<ResumoFuncionario>>() != null);
             return default (IEnumerable<ResumoFuncionario>);
+        }
+
+        public FuncionarioDto Obtem(int idFuncionario) {
+            Contract.Requires(idFuncionario > 0);
+            return default(FuncionarioDto);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
 using NHibernate.Cfg;
 
@@ -22,7 +23,10 @@ namespace Domain.Mapeamentos {
         }
 
         protected virtual void MapeiaTiposDeAssembly(FluentConfiguration configuration) {
-            configuration.Mappings(m => m.FluentMappings.AddFromAssemblyOf<Funcionario>());
+            //Autoimport set to false because there are 2 mappings
+            configuration.Mappings(m => m.FluentMappings
+                .Conventions.Setup(x=> x.Add(AutoImport.Never()))
+                .AddFromAssemblyOf<Funcionario>());
         }
     }
 }

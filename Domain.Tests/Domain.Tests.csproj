@@ -96,6 +96,7 @@
     <Compile Include="Handlers\FuncionalidadesProcessador.cs" />
     <Compile Include="Mapeamentos\GestorTransacoesTestes.cs" />
     <Compile Include="Mapeamentos\MapeamentoFuncionario.cs" />
+    <Compile Include="Mapeamentos\MapeamentoFuncionarioDto.cs" />
     <Compile Include="Mapeamentos\MapeamentoTipoFuncionario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\FuncionalidadesServicoVerificacaoDuplicacaoNif.cs" />

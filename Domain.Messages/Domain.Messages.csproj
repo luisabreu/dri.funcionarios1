@@ -95,6 +95,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Msg.resx</DependentUpon>
     </Compile>
+    <Compile Include="Relatorios\Funcionario.cs" />
     <Compile Include="Relatorios\ResumoFuncionario.cs" />
     <Compile Include="TipoContacto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

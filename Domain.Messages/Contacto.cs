@@ -26,7 +26,7 @@ namespace Domain.Messages {
             get { return _valor; }
         }
 
-        protected bool Equals(Contacto other) {
+        private bool Equals(Contacto other) {
             return _tipoContacto == other._tipoContacto && string.Equals(_valor, other._valor);
         }
 

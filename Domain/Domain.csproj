@@ -53,6 +53,7 @@
     <Compile Include="Handlers\Processador.cs" />
     <Compile Include="Mapeamentos\GestorTransacoes.cs" />
     <Compile Include="Mapeamentos\MapeamentoFuncionario.cs" />
+    <Compile Include="Mapeamentos\MapeamentoFuncionarioDto.cs" />
     <Compile Include="Mapeamentos\MapeamentoTipoFuncionario.cs" />
     <Compile Include="Msg.Designer.cs">
       <AutoGen>True</AutoGen>
