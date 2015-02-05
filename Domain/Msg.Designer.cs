@@ -61,6 +61,24 @@ namespace Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocorreu um erro ao criar o funcionário..
+        /// </summary>
+        internal static string Erro_criar_funcionario_partir_comando {
+            get {
+                return ResourceManager.GetString("Erro_criar_funcionario_partir_comando", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O NIF indicado já foi atribuído a outro funcionário..
+        /// </summary>
+        internal static string Nif_duplicado {
+            get {
+                return ResourceManager.GetString("Nif_duplicado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Este registo já foi modificado por outro utilizador..
         /// </summary>
         internal static string Objeto_modificado_por_outro_utilizador {

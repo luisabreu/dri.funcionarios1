@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Erro_criar_funcionario_partir_comando" xml:space="preserve">
+    <value>Ocorreu um erro ao criar o funcionário.</value>
+  </data>
+  <data name="Nif_duplicado" xml:space="preserve">
+    <value>O NIF indicado já foi atribuído a outro funcionário.</value>
+  </data>
   <data name="Objeto_modificado_por_outro_utilizador" xml:space="preserve">
     <value>Este registo já foi modificado por outro utilizador.</value>
   </data>
