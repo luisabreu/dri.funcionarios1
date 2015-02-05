@@ -35,7 +35,15 @@ namespace Domain.Handlers {
         }
 
         public MsgGravacao Trata(ModificaContactosFuncionario comando) {
-            throw new NotImplementedException();
+            var funcionario = _session.Get<Funcionario>(comando.Id);
+            Contract.Assert(funcionario != null, Msg.Erro_carregar_funcionario);
+            funcionario.Modifica(comando);
+            _session.Update(funcionario);
+            _session.Flush();
+            return new MsgGravacao {
+                                       Id = comando.Id,
+                                       Versao = funcionario.Versao
+                                   };
         }
 
         public MsgGravacao Trata(ModificaDadosGeraisFuncionario comando) {

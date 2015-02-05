@@ -61,6 +61,15 @@ namespace Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocorreu um erro ao carregar o funcionário..
+        /// </summary>
+        internal static string Erro_carregar_funcionario {
+            get {
+                return ResourceManager.GetString("Erro_carregar_funcionario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ocorreu um erro ao criar o funcionário..
         /// </summary>
         internal static string Erro_criar_funcionario_partir_comando {
