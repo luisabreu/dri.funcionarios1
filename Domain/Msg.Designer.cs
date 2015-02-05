@@ -68,5 +68,14 @@ namespace Domain {
                 return ResourceManager.GetString("Objeto_modificado_por_outro_utilizador", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A string não pode ser vazia..
+        /// </summary>
+        internal static string String_vazia {
+            get {
+                return ResourceManager.GetString("String_vazia", resourceCulture);
+            }
+        }
     }
 }

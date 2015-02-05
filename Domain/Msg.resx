@@ -120,4 +120,7 @@
   <data name="Objeto_modificado_por_outro_utilizador" xml:space="preserve">
     <value>Este registo já foi modificado por outro utilizador.</value>
   </data>
+  <data name="String_vazia" xml:space="preserve">
+    <value>A string não pode ser vazia.</value>
+  </data>
 </root>
