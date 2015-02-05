@@ -1,15 +1,16 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using NHibernate;
 using NHibernate.Cfg;
 
 namespace Domain.Mapeamentos {
     public abstract class GestorTransacoes {
 
-        public Configuration ObtemConfiguracao() {
+        public ISessionFactory ObtemFabricaSessoes() {
             var configuration = Fluently.Configure()
                 .Database(ConfiguraDb());
             MapeiaTiposDeAssembly(configuration);
-            return configuration.BuildConfiguration();
+            return configuration.BuildConfiguration().BuildSessionFactory();
         }
 
         public abstract string ObtemCnnString();
