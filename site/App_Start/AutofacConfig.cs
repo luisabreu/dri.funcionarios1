@@ -8,7 +8,9 @@ using NHibernate;
 using site.Helpers;
 
 namespace site.App_Start {
-    public class AutofacStarter {
+    public class AutofacConfig {
+        private static ISessionFactory _fabricaSessoes = new GestorTransacoes().ObtemFabricaSessoes();
+
         public static void RegisterForMvc() {
             var builder = new ContainerBuilder();
 
@@ -24,7 +26,7 @@ namespace site.App_Start {
         }
 
         private static void OverrideDependencyRegistration(ContainerBuilder builder) {
-            builder.Register(c => new GestorTransacoes().ObtemFabricaSessoes())
+            builder.Register(c => _fabricaSessoes.OpenSession())
                 .As<ISession>()
                 .InstancePerRequest();
         }

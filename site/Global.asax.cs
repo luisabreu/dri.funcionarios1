@@ -7,7 +7,7 @@ using site.App_Start;
 namespace site {
     public class MvcApplication : HttpApplication {
         protected void Application_Start() {
-            AutofacStarter.RegisterForMvc();
+            AutofacConfig.RegisterForMvc();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
