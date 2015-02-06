@@ -6,14 +6,14 @@ using FuncionarioDto = Domain.Messages.Relatorios.Funcionario;
 namespace Domain.Relatorios {
     [ContractClass(typeof(ContratoGestorRelatoriosFuncionarios))]
     public interface IGestorRelatoriosFuncionarios {
-        IEnumerable<ResumoFuncionario> Pesquisa(string nomeOuNif);
+        IEnumerable<ResumoFuncionario> Pesquisa(string nifOuNome);
         FuncionarioDto Obtem(int idFuncionario);
     }
 
     [ContractClassFor(typeof(IGestorRelatoriosFuncionarios))]
     abstract class ContratoGestorRelatoriosFuncionarios:IGestorRelatoriosFuncionarios {
-        public IEnumerable<ResumoFuncionario> Pesquisa(string nomeOuNif) {
-            Contract.Requires(!string.IsNullOrEmpty(nomeOuNif));
+        public IEnumerable<ResumoFuncionario> Pesquisa(string nifOuNome) {
+            Contract.Requires(!string.IsNullOrEmpty(nifOuNome));
             Contract.Ensures(Contract.Result<IEnumerable<ResumoFuncionario>>() != null);
             return default (IEnumerable<ResumoFuncionario>);
         }

@@ -18,12 +18,12 @@ namespace Domain.Relatorios {
             _session = session;
         }
 
-        public IEnumerable<ResumoFuncionario> Pesquisa(string nomeOuNif) {
+        public IEnumerable<ResumoFuncionario> Pesquisa(string nifOuNome) {
             const string sqlBase =
                 "select Id, Nome, Nif, descricao as TipoFuncionario from Funcionarios f inner join TipoFuncinario tf on f.IdTipofuncionario=tf.Id ";
-            var sql = sqlBase + (ENif(nomeOuNif) ? " where nif like '%:str%'" : " where nome like '%:str%'");
+            var sql = sqlBase + (ENif(nifOuNome) ? " where nif like '%:str%'" : " where nome like '%:str%'");
             var items = _session.CreateSQLQuery(sql)
-                .SetString("str", nomeOuNif)
+                .SetString("str", nifOuNome.Replace(' ', '%'))
                 .SetResultTransformer(Transformers.AliasToBean<ResumoFuncionario>())
                 .List<ResumoFuncionario>();
             return items;
