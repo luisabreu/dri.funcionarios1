@@ -61,6 +61,24 @@ namespace site {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O funcionário não existe..
+        /// </summary>
+        internal static string Funcionario_inexistente {
+            get {
+                return ResourceManager.GetString("Funcionario_inexistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O número tem de ser positivo..
+        /// </summary>
+        internal static string Numero_tem_ser_positivo {
+            get {
+                return ResourceManager.GetString("Numero_tem_ser_positivo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A string indicada não pode estar vazia..
         /// </summary>
         internal static string String_vazia {

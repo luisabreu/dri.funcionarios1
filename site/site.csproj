@@ -176,6 +176,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\GestorTransacoes.cs" />
+    <Compile Include="Models\DadosFormularioFuncionario.cs" />
     <Compile Include="Models\DadosPesquisa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Msg.Designer.cs">
