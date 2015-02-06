@@ -10,6 +10,7 @@ namespace Domain.Relatorios {
         IEnumerable<ResumoFuncionario> PesquisaFuncionarios(string nifOuNome);
         FuncionarioDto ObtemFuncionario(int idFuncionario);
         IEnumerable<TipoFuncionario> ObtemTodosTiposFuncionarios();
+        TipoFuncionario ObtemTipoFuncionario(int idTipoFuncionario);
     }
 
     [ContractClassFor(typeof(IGestorRelatorios))]
@@ -27,6 +28,11 @@ namespace Domain.Relatorios {
 
         public IEnumerable<TipoFuncionario> ObtemTodosTiposFuncionarios() {
             return default(IEnumerable<TipoFuncionario>);
+        }
+
+        public TipoFuncionario ObtemTipoFuncionario(int idTipoFuncionario) {
+            Contract.Requires(idTipoFuncionario > 0);
+            return default (TipoFuncionario);
         }
     }
 }

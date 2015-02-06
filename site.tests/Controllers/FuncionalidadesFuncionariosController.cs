@@ -45,7 +45,7 @@ namespace site.tests.Controllers {
                           resultado.Should().BeAssignableTo<ViewResult>();
                           var model = ((ViewResult) resultado).Model as DadosPesquisa;
                           model.Funcionarios.Should().BeSameAs(funcionarios);
-                          model.Pesquisa.Should().BeSameAs(pesquisa);
+                          model.NifOuNome.Should().BeSameAs(pesquisa);
                       });
 
             "E mocks devem ter sido usados"

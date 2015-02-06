@@ -6,5 +6,6 @@ namespace site.Models {
     public class DadosFormularioFuncionario {
         public FuncionarioDto Funcionario { get; set; }
         public IEnumerable<TipoFuncionario> TiposFuncionario { get; set; }
+        public bool Novo { get; set; }
     }
 }

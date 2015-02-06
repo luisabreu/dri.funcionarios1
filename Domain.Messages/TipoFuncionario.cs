@@ -19,12 +19,12 @@ namespace Domain.Messages {
 
 
         //props only for mapping NH
-        internal int Id {
+        public int Id {
             get { return _id; }
             
         }
 
-        internal string Descricao{
+        public string Descricao{
             get { return _descricao; }
             
         }

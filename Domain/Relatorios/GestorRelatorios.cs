@@ -21,10 +21,10 @@ namespace Domain.Relatorios {
 
         public IEnumerable<ResumoFuncionario> PesquisaFuncionarios(string nifOuNome) {
             const string sqlBase =
-                "select Id, Nome, Nif, descricao as TipoFuncionario from Funcionarios f inner join TipoFuncinario tf on f.IdTipofuncionario=tf.Id ";
-            var sql = sqlBase + (ENif(nifOuNome) ? " where nif like '%:str%'" : " where nome like '%:str%'");
+                "select f.Id, Nome, Nif, descricao as TipoFuncionario from Funcionarios f inner join TipoFuncionario tf on f.IdTipofuncionario=tf.Id ";
+            var sql = sqlBase + (ENif(nifOuNome) ? " where nif like :str" : " where nome like :str");
             var items = _session.CreateSQLQuery(sql)
-                .SetString("str", nifOuNome.Replace(' ', '%'))
+                .SetString("str", "%" + nifOuNome.Replace(' ', '%') + "%")
                 .SetResultTransformer(Transformers.AliasToBean<ResumoFuncionario>())
                 .List<ResumoFuncionario>();
             return items;
@@ -37,6 +37,10 @@ namespace Domain.Relatorios {
         public IEnumerable<TipoFuncionario> ObtemTodosTiposFuncionarios() {
             return _session.QueryOver<TipoFuncionario>()
                 .List<TipoFuncionario>();
+        }
+
+        public TipoFuncionario ObtemTipoFuncionario(int idTipoFuncionario) {
+            return _session.Load<TipoFuncionario>(idTipoFuncionario);
         }
 
         private bool ENif(string nomeOuNif) {
