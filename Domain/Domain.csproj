@@ -52,6 +52,7 @@
     <Compile Include="Handlers\IProcessador.cs" />
     <Compile Include="Handlers\Processador.cs" />
     <Compile Include="Mapeamentos\GestorTransacoes.cs" />
+    <Compile Include="Mapeamentos\IGestorTransacoes.cs" />
     <Compile Include="Mapeamentos\MapeamentoFuncionario.cs" />
     <Compile Include="Mapeamentos\MapeamentoFuncionarioDto.cs" />
     <Compile Include="Mapeamentos\MapeamentoTipoFuncionario.cs" />

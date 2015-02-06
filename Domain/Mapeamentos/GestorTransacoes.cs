@@ -5,7 +5,7 @@ using NHibernate;
 using NHibernate.Cfg;
 
 namespace Domain.Mapeamentos {
-    public abstract class GestorTransacoes {
+    public abstract class GestorTransacoes : IGestorTransacoes {
 
         public ISessionFactory ObtemFabricaSessoes() {
             var configuration = Fluently.Configure()
