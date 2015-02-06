@@ -1,14 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Http;
+using System.Web.Routing;
+using MvcRouteTester;
+using site.Controllers;
+using Xunit;
 
-namespace site.tests
-{
+namespace site.tests {
     public class RouteTests {
-        public void Verifica_regras_rotas() {
-            
+        private readonly RouteCollection _rotas = new RouteCollection();
+
+        public RouteTests() {
+            RouteConfig.RegisterRoutes(_rotas);
+        }
+
+        [Fact]
+        public void Verifica_url_base() {
+            _rotas.ShouldMap("/").To<FuncionariosController>(HttpMethod.Get, h => h.Index());
+        }
+
+        [Fact]
+        public void Verifica_url_pesquisa_funcionarios() {
+            _rotas.ShouldMap("/pesquisa/Luis Abreu").To<FuncionariosController>(HttpMethod.Get, h => h.Pesquisa("Luis Abreu"));
+        }
+
+        [Fact]
+        public void Verifica_url_ficha_individual_funcionario() {
+            _rotas.ShouldMap("/funcionario/123456789").To<FuncionariosController>(h => h.Funcionario("123456789"));
         }
     }
 }
