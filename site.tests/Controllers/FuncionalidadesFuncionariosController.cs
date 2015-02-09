@@ -1,5 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Domain.Handlers;
 using Domain.Messages;
+using Domain.Messages.Comandos;
+using Domain.Messages.Handlers;
 using Domain.Messages.Relatorios;
 using Domain.Relatorios;
 using FluentAssertions;
@@ -100,5 +104,65 @@ namespace site.tests.Controllers {
                          _container.GetMock<ITransaction>().VerifyAll();
                      });
         }
+
+        [Scenario]
+        public void Interage_com_processador_para_criar_novo(FuncionariosController controlador, int id, int versao, string nome, string nif, int tipoFuncionario, ActionResult resultado) {
+            var funcionarioDto = new FuncionarioDto();
+            var tipos = new List<TipoFuncionario>() {new TipoFuncionario(1, "teste")};
+
+            "Dado um controlador"
+                .Given(() => controlador = _container.Create<FuncionariosController>());
+
+            "E um id, versao e tipoFuncionario"
+                .And(() => {
+                         id = versao = 0;
+                         tipoFuncionario = 1;
+                     });
+
+            "E um nome"
+                .And(() => nome = "Luis");
+
+            "E um NIF"
+                .And(() => nif = "123456789");
+
+            "E um conjunto de mocks"
+                .And(() => {
+                         var query = _container.GetMock<IQueryOver<TipoFuncionario,TipoFuncionario>>();
+                         var tran = _container.GetMock<ITransaction>();
+                         _container.GetMock<ISession>()
+                             .Setup(s => s.BeginTransaction())
+                             .Returns(tran.Object);
+                         tran.Setup(t => t.Commit());
+                         _container.GetMock<ISession>()
+                             .Setup(s => s.QueryOver<TipoFuncionario>())
+                             .Returns(query.Object);
+                         query.Setup(q => q.List<TipoFuncionario>())
+                             .Returns(tipos);
+
+                         _container.GetMock<IProcessador>()
+                             .Setup(p => p.Trata(It.IsAny<CriaFuncionario>()))
+                             .Returns(new MsgGravacao {Id = 1, Versao = 1});
+
+                         _container.GetMock<ISession>()
+                             .Setup(s => s.Load<FuncionarioDto>(1))
+                             .Returns(funcionarioDto);
+                     });
+
+            "Quando tentarmos criar um novo funcionário"
+                .When(() => resultado = controlador.DadosGerais(id, versao, nome, nif, tipoFuncionario));
+
+            "Então devemos ter uma mensagem com dados esperados"
+                .Then(() => {
+                          var rv = (ViewResult) resultado;
+                          rv.ViewName.Should().Be("Funcionario");
+                          var model = (DadosFormularioFuncionario) rv.Model;
+                          model.Funcionario.Should().BeSameAs(funcionarioDto);
+                          model.Novo.Should().BeFalse();
+                          model.TiposFuncionario.Should().BeEquivalentTo(tipos);
+                      });
+        }
+
     }
+
+  
 }

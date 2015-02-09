@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 namespace Domain.Messages {
     public sealed class Contacto {
         private static readonly Regex _verificadorNumTel = new Regex(@"^\d{9}$");
+        private static readonly Regex _verificadorNumExtensao = new Regex(@"^\d{4}$");
         private TipoContacto _tipoContacto;
         private string _valor;
         //NH
@@ -76,65 +77,28 @@ namespace Domain.Messages {
             return new Contacto(TipoContacto.Email, mail);
         }
 
-        private static readonly Regex _verificadorNumExtensao = new Regex(@"^\d{4}$");
         public static Contacto CriaExtensao(string ext) {
             Contract.Requires(ext != null, Msg.Contacto_incorreto);
-            if (!_verificadorNumExtensao.IsMatch(ext))
-            {
+            if (!_verificadorNumExtensao.IsMatch(ext)) {
                 throw new InvalidOperationException(Msg.Contacto_incorreto);
             }
-            return new Contacto(Messages.TipoContacto.Extensao, ext);
+            return new Contacto(TipoContacto.Extensao, ext);
         }
-    }
 
-    /*
-    public class Telefone : Contacto {
-        private static readonly Regex _validator = new Regex(@"^\d{9}$");
-
-        public Telefone(string valor) : base(TipoContacto.Telefone, valor) {
-            Contract.Requires(valor != null, Msg.Contacto_incorreto);
-            if (!IsValid(valor)) {
-                throw new InvalidOperationException(Msg.Contacto_incorreto);
+        public static Contacto Parses(string contacto) {
+            if (new Regex(@"^\d{9}$").IsMatch(contacto)) {
+                return CriaTelefone(contacto);
             }
-        }
-
-        private bool IsValid(string valor) {
-            return _validator.IsMatch(valor);
-        }
-    }
-    
-
-    public class Email : Contacto {
-        public Email(string valor) : base(TipoContacto.Email, valor) {
-            Contract.Requires(valor != null, Msg.Contacto_incorreto);
-            if (!IsValid(valor)) {
-                throw new InvalidOperationException(Msg.Contacto_incorreto);
+            if (new Regex(@"^\d{4}$").IsMatch(contacto)) {
+                return CriaExtensao(contacto);
             }
-        }
-
-        private bool IsValid(string valor) {
             try {
-                new MailAddress(valor);
-                return true;
+                new MailAddress(contacto);
+                return CriaEmail(contacto);
             }
-            catch {
-                return false;
+            catch (Exception) {
+                return null;
             }
         }
     }
-
-    public class Extensao : Contacto {
-        private static readonly Regex _validator = new Regex(@"^\d{4}$");
-
-        public Extensao(string valor) : base(TipoContacto.Email, valor) {
-            Contract.Requires(valor != null, Msg.Contacto_incorreto);
-            if (!IsValid(valor)) {
-                throw new InvalidOperationException(Msg.Contacto_incorreto);
-            }
-        }
-
-        private bool IsValid(string valor) {
-            return _validator.IsMatch(valor);
-        }
-    }*/
 }

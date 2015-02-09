@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Contacto_invalido" xml:space="preserve">
+    <value>Contacto introduzido não é válido.</value>
+  </data>
   <data name="Funcionario_inexistente" xml:space="preserve">
     <value>O funcionário não existe.</value>
   </data>
@@ -125,5 +128,8 @@
   </data>
   <data name="String_vazia" xml:space="preserve">
     <value>A string indicada não pode estar vazia.</value>
+  </data>
+  <data name="Tipo_funcionario_inexistente" xml:space="preserve">
+    <value>Tipo de funcionário escolhido não existe.</value>
   </data>
 </root>

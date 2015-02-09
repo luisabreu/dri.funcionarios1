@@ -58,7 +58,9 @@
     <Compile Include="Comandos\FuncionalidadesModificaDadosGeraisFuncionario.cs" />
     <Compile Include="FuncionalidadesComparacaoContacto.cs" />
     <Compile Include="FuncionalidadesCriacaoEmail.cs" />
+    <Compile Include="FuncionalidadesCriacaoExtensao.cs" />
     <Compile Include="FuncionalidadesCriacaoTelefone.cs" />
+    <Compile Include="FuncionalidadesParsingContacto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

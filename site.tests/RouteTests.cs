@@ -24,7 +24,7 @@ namespace site.tests {
 
         [Fact]
         public void Verifica_url_ficha_individual_funcionario() {
-            _rotas.ShouldMap("/funcionario/1").To<FuncionariosController>(h => h.Funcionario(1));
+            _rotas.ShouldMap("/funcionario?id=1").To<FuncionariosController>(h => h.Funcionario(1));
         }
     }
 }

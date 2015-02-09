@@ -61,6 +61,15 @@ namespace site {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contacto introduzido não é válido..
+        /// </summary>
+        internal static string Contacto_invalido {
+            get {
+                return ResourceManager.GetString("Contacto_invalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O funcionário não existe..
         /// </summary>
         internal static string Funcionario_inexistente {
@@ -84,6 +93,15 @@ namespace site {
         internal static string String_vazia {
             get {
                 return ResourceManager.GetString("String_vazia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de funcionário escolhido não existe..
+        /// </summary>
+        internal static string Tipo_funcionario_inexistente {
+            get {
+                return ResourceManager.GetString("Tipo_funcionario_inexistente", resourceCulture);
             }
         }
     }

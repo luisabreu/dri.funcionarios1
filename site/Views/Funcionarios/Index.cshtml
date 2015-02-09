@@ -19,14 +19,16 @@
         <table class="table table-hover col-xs-12">
             <thead>
             <tr>
-                <td class="col-xs-3">NIF</td>
-                <td class="col-xs-7">Nome</td>
+                <td class="col-xs-1"></td>
+                <td class="col-xs-5">Nome</td>
+                <td class="col-xs-4">Nif</td>
                 <td class="col-xs-2">Tipo</td>
             </tr>
             </thead>
             <tbody>
             @foreach (var func in Model.Funcionarios) {
                 <tr>
+                    <td><a href="@Url.Action("Funcionario", "Funcionarios", new{ id =func.Id})"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     <td>@func.Nif</td>
                     <td>@func.Nome</td>
                     <td>@func.TipoFuncionario</td>
@@ -44,7 +46,7 @@
 </div>
 
 @section footer {
-    @Html.BeginForm("funcionario", "Funcionarios") {
+    @using(Html.BeginForm("funcionario", "Funcionarios")) {
     <button class="round-button round-button-anim">
         <img class="no" src="@Url.Content("~/Content/pencil.png")"/>
         <img src="@Url.Content("~/Content/add.png")"/>
