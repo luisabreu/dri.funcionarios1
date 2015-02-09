@@ -87,6 +87,7 @@ namespace site.Controllers {
                         var comando = new CriaFuncionario(nome, nif, tipo);
                         msg = _processador.Trata(comando);
                         novo = !msg.GravadaComSucesso();
+                        id = msg.Id;
                     }
 
                     tran.Commit();
@@ -96,7 +97,7 @@ namespace site.Controllers {
                 }
             }
             return View("Funcionario", new DadosFormularioFuncionario {
-                Funcionario = !criarNovoFuncionario || !novo ? _session.Load<FuncionarioDto>(msg.Id) : CriaFuncionarioDtoVazio(tipos),
+                Funcionario = !criarNovoFuncionario || !novo ? _session.Load<FuncionarioDto>(id) : CriaFuncionarioDtoVazio(tipos),
                                                                           Novo = criarNovoFuncionario && novo,
                                                                           TiposFuncionario = tipos
                                                                       });
@@ -122,7 +123,7 @@ namespace site.Controllers {
                 }
             }
             return View("Funcionario", new DadosFormularioFuncionario {
-                                                                          Funcionario = _session.Load<FuncionarioDto>(msg.Id),
+                                                                          Funcionario = _session.Load<FuncionarioDto>(id),
                                                                           Novo = false,
                                                                           TiposFuncionario = tipos
                                                                       });
@@ -147,7 +148,7 @@ namespace site.Controllers {
                 }
             }
             return View("Funcionario", new DadosFormularioFuncionario {
-                                                                          Funcionario = _session.Load<FuncionarioDto>(msg.Id),
+                                                                          Funcionario = _session.Load<FuncionarioDto>(id),
                                                                           Novo = false,
                                                                           TiposFuncionario = tipos
                                                                       });
