@@ -21,8 +21,8 @@ namespace Domain.Relatorios {
 
         public IEnumerable<ResumoFuncionario> PesquisaFuncionarios(string nifOuNome) {
             const string sqlBase =
-                "select f.Id, Nome, Nif, descricao as TipoFuncionario from Funcionarios f inner join TipoFuncionario tf on f.IdTipofuncionario=tf.Id ";
-            var sql = sqlBase + (ENif(nifOuNome) ? " where nif like :str" : " where nome like :str");
+                "select f.Id, Nome, Nif, descricao as TipoFuncionario from Funcionarios f inner join TipoFuncionario tf on f.IdTipofuncionario=tf.Id where {0} like :str";
+            var sql = string.Format(sqlBase,  (ENif(nifOuNome) ? " nif " : " nome "));
             var items = _session.CreateSQLQuery(sql)
                 .SetString("str", "%" + nifOuNome.Replace(' ', '%') + "%")
                 .SetResultTransformer(Transformers.AliasToBean<ResumoFuncionario>())

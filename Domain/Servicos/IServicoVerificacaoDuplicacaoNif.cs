@@ -11,7 +11,7 @@ namespace Domain.Servicos {
     internal abstract class ContratoServicoVerificacaoDuplicacaoNif : IServicoVerificacaoDuplicacaoNif {
         public bool NifDuplicado(string nif, int id) {
             Contract.Requires(!string.IsNullOrEmpty(nif), Msg.String_vazia);
-            Contract.Requires(id > 0);
+            Contract.Requires(id >= 0);
             return default (bool);
         }
     }
